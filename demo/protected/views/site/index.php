@@ -1405,6 +1405,54 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
+<section id="bootWysiwyg">
+
+	<h2>Wysiwyg editor</h2>
+
+	<p>
+		See <a href="http://jhollingworth.github.com/bootstrap-wysihtml5/">http://jhollingworth.github.com/bootstrap-wysihtml5/</a>
+	</p>
+	
+	<?php $this->widget('bootstrap.widgets.BootWysiwyg', array(
+		'htmlOptions'=>array('style'=>'width: 600px; height: 200px;'),
+		'buttons'=>array( // optional. If skipped all buttons will be shown
+			'font-styles',
+			'emphasis',
+			'lists'
+		),
+		'events'=>array( // optional
+			'load'=>'js:function() {
+				console.log("Loaded!");
+			}',
+			'blur'=>'js:function() {
+				console.log("Blured");
+			}'
+		)
+	)); ?>
+	
+	<h4>Source code</h4>
+
+	<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootWysiwyg', array(
+	'htmlOptions'=>array('style'=>'width: 600px; height: 200px;'),
+	'buttons'=>array( // optional. If skipped all buttons will be shown
+		'font-styles',
+		'emphasis',
+		'lists'
+	),
+	'events'=>array( // optional
+		'load'=>'js:function() {
+			console.log(\"Loaded!\");
+		}',
+		'blur'=>'js:function() {
+			console.log(\"Blured\");
+		}'
+	)
+)); ?>"); ?>
+
+	<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
 <section id="comments">
 
 	<h2>Comments</h2>
@@ -1441,6 +1489,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			array('label'=>'Typeahead', 'url'=>'#bootTypeahead'),
 			array('label'=>'Labels', 'url'=>'#bootLabel'),
 			array('label'=>'Badges', 'url'=>'#bootBadge'),
+			array('label'=>'Wysiwyg', 'url'=>'#bootWysiwyg'),
 		),
 	)); ?>
 
