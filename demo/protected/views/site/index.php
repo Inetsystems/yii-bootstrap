@@ -1405,6 +1405,50 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
+<section id="bootDatePicker">
+
+	<h2>Datepicker</h2>
+
+	<p>
+		See <a href="http://www.eyecon.ro/bootstrap-datepicker/">http://www.eyecon.ro/bootstrap-datepicker/</a>
+	</p>
+
+	<?php $this->widget('bootstrap.widgets.BootDatePicker', array(
+		'options'=>array(
+			'format'=>'d.m.yyyy', // default is dd/mm/yyyy
+			'weekStart'=>0, // 1 = Sunday (default), 0 = Monday
+		),
+		'events'=>array( // optional
+			'show'=>'js:function() {
+				console.log("Show event");
+			}',
+			'hide'=>'js:function() {
+				console.log("Hide event");
+			}'
+		)
+	)); ?>
+	
+	<h4>Source code</h4>
+
+	<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootDatePicker', array(
+	'options'=>array(
+		'format'=>'d.m.yyyy', // default is dd/mm/yyyy
+		'weekStart'=>0, // 1 = Sunday (default), 0 = Monday
+	),
+	'events'=>array( // optional
+		'show'=>'js:function() {
+			console.log(\"Show event\");
+		}',
+		'hide'=>'js:function() {
+			console.log(\"Hide event\");
+		}'
+	)
+)); ?>"); ?>
+
+	<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
 <section id="comments">
 
 	<h2>Comments</h2>
@@ -1441,6 +1485,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			array('label'=>'Typeahead', 'url'=>'#bootTypeahead'),
 			array('label'=>'Labels', 'url'=>'#bootLabel'),
 			array('label'=>'Badges', 'url'=>'#bootBadge'),
+			array('label'=>'Datepicker', 'url'=>'#bootDatePicker'),
 		),
 	)); ?>
 
