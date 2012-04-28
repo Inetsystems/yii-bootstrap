@@ -3,16 +3,17 @@
 /**
  * BootDatePicker class file.
  * @author Sam Stenvall <sam.stenvall@arcada.fi>
- * @copyright Copyright &copy; Christoffer Niska 2011-
+ * @author Christoffer Niska <ChristofferNiska@gmail.com>
+ * @copyright Copyright &copy; Christoffer Niska 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @package bootstrap.widgets
- * @since 1.0.0
+ * @since 0.10.0
  */
 
 /**
  * Bootstrap date picker widget.
  */
-class BootDatePicker extends CWidget
+class BootDateicker extends CWidget
 {
 	
 	/**
@@ -24,10 +25,13 @@ class BootDatePicker extends CWidget
 	);
 
 	/**
-	 * @var array events that should be passed to the date picker.
+	 * @var array the options for the Bootstrap JavaScript plugin.
+	 */
+	public $options = array();
+	/**
+	 * @var string[] the JavaScript event handlers.
 	 */
 	public $events = array();
-	
 	/**
 	 * @var array the HTML attributes for the widget container.
 	 */

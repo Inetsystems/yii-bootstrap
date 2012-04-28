@@ -26,6 +26,7 @@ class Bootstrap extends CApplicationComponent
 	const PLUGIN_TOOLTIP = 'tooltip';
 	const PLUGIN_TRANSITION = 'transition';
 	const PLUGIN_TYPEAHEAD = 'typeahead';
+	const PLUGIN_DATEPICKER = 'datepicker';
 
 	/**
 	 * @var boolean whether to register the Bootstrap core CSS (bootstrap.min.css).
@@ -270,6 +271,18 @@ class Bootstrap extends CApplicationComponent
 	public function registerTypeahead($selector = null, $options = array())
 	{
 		$this->registerPlugin(self::PLUGIN_TYPEAHEAD, $selector, $options);
+	}
+
+	/**
+	 * Registers the Bootstrap datepicker plugin.
+	 * @param string $selector the CSS selector
+	 * @param array $options the plugin options
+	 * @see http://www.eyecon.ro/bootstrap-datepicker/
+	 * @since 0.10.0
+	 */
+	public function registerDatepicker($selector = null, $options = array())
+	{
+		$this->registerPlugin(self::PLUGIN_DATEPICKER, $selector, $options);
 	}
 
 	/**
