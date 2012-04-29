@@ -27,6 +27,7 @@ abstract class BootInput extends CInputWidget
 	const TYPE_TEXT = 'textfield';
 	const TYPE_CAPTCHA = 'captcha';
 	const TYPE_UNEDITABLE = 'uneditable';
+	const TYPE_DATEPICKER = 'datepicker';
 
 	/**
 	 * @var BootActiveForm the associated form widget.
@@ -39,7 +40,7 @@ abstract class BootInput extends CInputWidget
 	/**
 	 * @var string the input type.
 	 * Following types are supported: checkbox, checkboxlist, dropdownlist, filefield, password,
-	 * radiobutton, radiobuttonlist, textarea, textfield, captcha and uneditable.
+	 * radiobutton, radiobuttonlist, textarea, textfield, captcha, uneditable and datepicker.
 	 */
 	public $type;
 	/**
@@ -130,6 +131,10 @@ abstract class BootInput extends CInputWidget
 
 			case self::TYPE_UNEDITABLE:
 				$this->uneditableField();
+				break;
+
+			case self::TYPE_DATEPICKER:
+				$this->datepickerField();
 				break;
 
 			default:
@@ -366,4 +371,11 @@ abstract class BootInput extends CInputWidget
 	 * @abstract
 	 */
 	abstract protected function uneditableField();
+
+	/**
+	 * Renders a datepicker field.
+	 * @return string the rendered content
+	 * @abstract
+	 */
+	abstract protected function datepickerField();
 }

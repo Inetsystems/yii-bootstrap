@@ -92,7 +92,10 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function registerCss()
 	{
-		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap.min.css');
+		/** @var CClientScript $cs */
+		$cs = Yii::app()->clientScript;
+		$cs->registerCssFile($this->getAssetsUrl().'/css/bootstrap.min.css');
+		$cs->registerCssFile($this->getAssetsUrl().'/css/datepicker.css');
 	}
 
 	/**
@@ -138,6 +141,7 @@ class Bootstrap extends CApplicationComponent
 		$cs = Yii::app()->getClientScript();
 		$cs->registerCoreScript('jquery');
 		$cs->registerScriptFile($this->getAssetsUrl().'/js/bootstrap.min.js', $position);
+		$cs->registerScriptFile($this->getAssetsUrl().'/js/bootstrap-datepicker.js', $position);
 	}
 
 	/**
@@ -343,7 +347,7 @@ class Bootstrap extends CApplicationComponent
 	*/
 	protected function getAssetsUrl()
 	{
-		if ($this->_assetsUrl !== null)
+		if (isset($this->_assetsUrl))
 			return $this->_assetsUrl;
 		else
 		{

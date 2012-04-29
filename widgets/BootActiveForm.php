@@ -220,6 +220,19 @@ class BootActiveForm extends CActiveForm
 	}
 
 	/**
+	 * Renders a datepicker field row.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the generated row
+	 * @since 0.10.0
+	 */
+	public function datepickerRow($model, $attribute, $htmlOptions = array())
+	{
+		return $this->inputRow(BootInput::TYPE_DATEPICKER, $model, $attribute, null, $htmlOptions);
+	}
+
+	/**
 	 * Renders a checkbox list for a model attribute.
 	 * This method is a wrapper of {@link CHtml::activeCheckBoxList}.
 	 * Please check {@link CHtml::activeCheckBoxList} for detailed information

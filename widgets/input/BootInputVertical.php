@@ -16,19 +16,6 @@ Yii::import('bootstrap.widgets.input.BootInput');
 class BootInputVertical extends BootInput
 {
 	/**
-	 * Renders a CAPTCHA.
-	 * @return string the rendered content
-	 */
-	protected function captcha()
-	{
-		echo $this->getLabel().'<div class="captcha">';
-		echo '<div class="widget">'.$this->widget('CCaptcha', $this->data, true).'</div>';
-		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
-
-	/**
 	 * Renders a checkbox.
 	 * @return string the rendered content
 	 */
@@ -165,6 +152,54 @@ class BootInputVertical extends BootInput
 	{
 		echo $this->getLabel();
 		echo CHtml::tag('span', $this->htmlOptions, $this->model->{$this->attribute});
+		echo $this->getError().$this->getHint();
+	}
+
+	/**
+	 * Renders a CAPTCHA.
+	 * @return string the rendered content
+	 */
+	protected function captcha()
+	{
+		if (isset($this->htmlOptions['options']))
+		{
+			$options = $this->htmlOptions['options'];
+			unset($this->htmlOptions['options']);
+		}
+
+		echo $this->getLabel().'<div class="captcha">';
+		echo '<div class="widget">'.$this->widget('CCaptcha', isset($options) ? $options : array(), true).'</div>';
+		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getError().$this->getHint();
+		echo '</div>';
+	}
+
+	/**
+	 * Renders a datepicker field.
+	 * @return string the rendered content
+	 */
+	protected function datepickerField()
+	{
+		if (isset($this->htmlOptions['options']))
+		{
+			$options = $this->htmlOptions['options'];
+			unset($this->htmlOptions['options']);
+		}
+
+		if (isset($this->htmlOptions['events']))
+		{
+			$events = $this->htmlOptions['events'];
+			unset($this->htmlOptions['events']);
+		}
+
+		echo $this->getLabel();
+		$this->widget('bootstrap.widgets.BootDatepicker', array(
+			'model'=>$this->model,
+			'attribute'=>$this->attribute,
+			'options'=>isset($options) ? $options : array(),
+			'events'=>isset($events) ? $events : array(),
+			'htmlOptions'=>$this->htmlOptions,
+		));
 		echo $this->getError().$this->getHint();
 	}
 }
