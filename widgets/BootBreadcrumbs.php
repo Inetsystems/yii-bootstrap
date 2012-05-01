@@ -43,18 +43,22 @@ class BootBreadcrumbs extends CBreadcrumbs
 
 		if ($this->homeLink !== false)
 		{
-			if (is_array($this->homeLink))
-				$this->homeLink = CHtml::link($this->homeLink['label'], $this->homeLink['url']);
-			
-			$links[] = $this->renderItem($this->homeLink, Yii::app()->request->requestUri === Yii::app()->homeUrl);
+			if (!is_array($this->homeLink) || !isset($this->homeLink['label']) || !isset($this->homeLink['url']))
+				throw new CException(__CLASS__.': homeLink must be an array with "label" and "url".');
+
+			$label = $this->homeLink['label'];
+			$url = $this->homeLink['url'];
+			$active = Yii::app()->request->requestUri === Yii::app()->homeUrl;
+			$label = $this->encodeLabel ? CHtml::encode($label) : $label;
+			$content = !$active ? CHtml::link($label, $url) : $label;
+			$links[] = $this->renderItem($content, $active);
 		}
 		
-		foreach ($this->links as $label=>$url)
+		foreach ($this->links as $label => $url)
 		{
 			if (is_string($label) || is_array($url))
 			{
-				$label = $this->encodeLabel ? CHtml::encode($label) : $label;
-				$content = CHtml::link($label, $url);
+				$content = CHtml::link($this->encodeLabel ? CHtml::encode($label) : $label, $url);
 				$links[] = $this->renderItem($content);
 			}
 			else
@@ -72,7 +76,7 @@ class BootBreadcrumbs extends CBreadcrumbs
 	 * @param boolean $active whether the item is active.
 	 * @return string the markup.
 	 */
-	protected function renderItem($content, $active=false)
+	protected function renderItem($content, $active = false)
 	{
 		$separator = !$active ? '<span class="divider">'.$this->separator.'</span>' : '';
 		
