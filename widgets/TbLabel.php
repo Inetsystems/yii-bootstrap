@@ -20,6 +20,7 @@ class TbLabel extends CWidget
 	const TYPE_INFO = 'info';
 	const TYPE_INVERSE = 'inverse';
 
+    public $tagName = 'span';
 	/**
 	 * @var string the label type.
 	 * Valid types are 'success', 'warning', 'important', 'info' and 'inverse'.
@@ -68,6 +69,6 @@ class TbLabel extends CWidget
 	 */
 	public function run()
 	{
-		echo CHtml::tag('span', $this->htmlOptions, $this->label);
+		echo CHtml::tag($this->tagName, $this->htmlOptions, $this->label);
 	}
 }
