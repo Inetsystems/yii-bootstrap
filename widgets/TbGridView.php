@@ -80,7 +80,7 @@ class TbGridView extends CGridView
 		
 		$afterAjaxUpdate = "js:function() {
 			jQuery('.popover').remove();
-			jQuery('{$popover}').popover();
+			jQuery('{$popover}').clickover();
 			jQuery('.tooltip').remove();
 			jQuery('{$tooltip}').tooltip();
 		}";

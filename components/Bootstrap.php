@@ -19,7 +19,7 @@ class Bootstrap extends CApplicationComponent
     const PLUGIN_COLLAPSE = 'collapse';
     const PLUGIN_DROPDOWN = 'dropdown';
     const PLUGIN_MODAL = 'modal';
-    const PLUGIN_POPOVER = 'popover';
+    const PLUGIN_POPOVER = 'clickover';
     const PLUGIN_SCROLLSPY = 'scrollspy';
     const PLUGIN_TAB = 'tab';
     const PLUGIN_TOOLTIP = 'tooltip';
@@ -242,6 +242,7 @@ class Bootstrap extends CApplicationComponent
 	public function registerPopover($selector = null, $options = array())
 	{
 		$this->registerTooltip(); // Popover requires the tooltip plugin
+		Yii::app()->getClientScript()->registerScriptFile($this->getAssetsUrl().'/js/bootstrapx-clickover.js');
 		$this->registerPlugin(self::PLUGIN_POPOVER, $selector, $options, $this->popoverSelector);
 	}
 
