@@ -311,7 +311,9 @@ class Bootstrap extends CApplicationComponent
 		{
 			$key = __CLASS__.'.'.md5($name.$selector.serialize($options).$defaultSelector);
 			$options = !empty($options) ? CJavaScript::encode($options) : '';
-			Yii::app()->clientScript->registerScript($key, "jQuery('{$selector}').{$name}({$options});");
+			$ClientScript = Yii::app()->clientScript;
+			$ClientScript->registerScript($key, "jQuery(document).bind('eventRefresh', function(){jQuery('{$selector}').{$name}({$options});});", CClientScript::POS_HEAD);
+			$ClientScript->registerScript('eventRefresh', 'jQuery(document).trigger("eventRefresh");', CClientScript::POS_READY);
 		}
 	}
 
