@@ -64,7 +64,7 @@
       this.options.class_name && this.tip().addClass(this.options.class_name);
 
 	  // we could override this to provide show and hide hooks 
-      this.toggle();
+      this.toggle(e);
 
       // if shown add global click closer
       if ( this.isShown() ) {
